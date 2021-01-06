@@ -68,6 +68,11 @@ enum blur_method {
 	BLUR_METHOD_INVALID,
 };
 
+typedef struct region_list_str {
+	char *reg;
+	struct region_list_str *next;
+} region_list_str_t;
+
 typedef struct _c2_lptr c2_lptr_t;
 
 /// Structure representing all options.
@@ -150,6 +155,8 @@ typedef struct options {
 	double shadow_opacity;
 	/// argument string to shadow-exclude-reg option
 	char *shadow_exclude_reg_str;
+	/// Shadow exclude region list. A linked list of regions as string.
+	region_list_str_t *shadow_exclude_regions_str;
 	/// Shadow blacklist. A linked list of conditions.
 	c2_lptr_t *shadow_blacklist;
 	/// Whether bounding-shaped window should be ignored.
